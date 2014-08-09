@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Ảnh từ flickr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div id="main" class="clearfix" style="z-index: 1;">
+    <div class="subnav-refresh subnav-view subnav-state-ready" id="subnav-refresh" style="left: -188px; width: 1351px;">
+        <!--Menu-->
+        <div class="subnav-middle" id="yui_3_11_0_3_1393404454770_735" style="height: 37.4px">
+
+            <div class="subnav-holder" id="yui_3_11_0_3_1393404454770_734">
+                <ul class="nav-links clearfix" id="yui_3_11_0_3_1393404454770_733" style="margin-left:0px !important">
+                    <li class="sn-navitem sn-photostream sn-active">
+                        <a data-track="YouSubnav-photostream" href="/home/flickr" data-rapid_p="3" id="alist">Danh sách ảnh</a>
+
+                    </li>
+                    <li class="sn-navitem sn-navitem-sets">
+                        <a data-track="YouSubnav-sets" href="/home/flickrslide" data-rapid_p="4" id="aslide">Trình diễn ảnh</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="view-holder">
+        <div id="photo-list-holder" class="pre-loaded loaded" style="opacity: 1;">
+            <div>
+                <div id="thumb-wrapper">
+                    <div id="thumbnails" class="ju photo-display-container clearfix" style="width: 1341px; margin-left: 10px;">
+                        <div id="photo-display-container" style="z-index: 2;">
+
+                            @Html.Raw(ViewBag.image)
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="~/Content/js/lightbox-2.6.min.js"></script>
+    <link href="~/Content/css/lightbox.css" rel="stylesheet" />
+</div>

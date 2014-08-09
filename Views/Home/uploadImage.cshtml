@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Fake: Tải ảnh lên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<input type="hidden" id="delimg" value="@ViewBag.path" />
+<input type="hidden" id="limg" value="@ViewBag.delpath" />
+
+<div id="Main" class="" role="main">
+    <h1>Tải ảnh lên Fake</h1>
+    <table id="upload_from_container">
+        <tbody>
+            <tr>
+                <td id="Hint" style="width: 161px">
+                    <h4><a href="">Công cụ tải ảnh</a></h4>
+                    <p>Chúng tôi cung cấp các công cụ cho máy Mac và Windows để giúp dễ dàng tải lên cả một loạt ảnh trong một lần.</p>
+                    <img src="http://l.yimg.com/g/images/spaceball.gif" width="160" height="1">
+                    <div id="support-notes">
+
+                        <ul id="support-list" class="supported">
+
+                            <li class="default upgrade noflash badversion">
+                                <p>
+                                    <strong>Lưu ý</strong> - Chúng tôi có nhiều phiên bản Công cụ tải ảnh tốt hơn nhiều mà bạn có thể sử dụng nếu bạn bật JavaScript và cài đặt phiên bản mới nhất của phần mềm Flash. Bạn có thể <a href="http://www.adobe.com/go/getflashplayer">tải về trình phát Flash miễn phí ở đây</a>. Khi bạn đã cài đặt xong, hãy trở lại đây để xem <a href="/photos/upload/">phiên bản flash của Công cụ tải ảnh của chúng tôi</a>.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td id="GoodStuff" style="padding-left: 20px">
+                    <div id="wholeform">
+                        @using (Html.BeginForm(/*"uploadImage", "home", FormMethod.Post,*/ new { enctype = "multipart/form-data" }))
+                        {
+                            <h4>
+                                <label for="tags">Đặt tên cho ảnh của bạn.</label>
+                            </h4>
+                            <p class="fieldset">
+                                <input type="text" name="tags" id="tags" size="40" value="" style="width: 230px;">
+                            </p>
+                            
+                            <h4 style="margin-top: 5px; margin-bottom: 10px;">Chọn ảnh bạn muốn trên máy tính</h4>
+                            <div id="file-inputs" class="fieldset">
+                                <p>
+                                    <label for="file1" class="obscured">Choose an image to upload</label>
+                                    <input type="file" name="file1" id="file1">
+                                </p>
+                            </div>
+                            
+                            @*<p>
+                                <input id="start-upload" type="submit" name="Submit" value="TẢI LÊN" class="Butt" style="background: background: #0063dc;">
+                            </p>*@
+                            <p>Hoặc <a href="/home/imageuser" style="color: #0063dc">hủy và trở lại kho ảnh của bạn</a>.</p>
+                        }
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    @Html.Raw(ViewBag.StartupScript)
+</script>
+@*<script>
+    @Html.Raw(ViewBag.DeleteImage)
+</script>*@
+
+@*<formenctype="multipart/form-data" id="form">
+    <label for="somefile">File</label>
+    <input name="somefile" type="file" id="files" />
+    <input type="submit" value="Submit" id="sub"/>
+</form>*@
+<input type="hidden"  id="txtnguoidang" value="@User.Identity.Name" />
+<script>
+    $('#file1').change(function () {
+        var tieude = document.getElementById('tags').value;
+        var nguoidang = document.getElementById('txtnguoidang').value;
+        var files = this.files;
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                var filename;
+                for (i = 0; i < files.length; i++) {
+                    data.append("items[]", files[i]);
+                    filename = files[i].name;
+                }
+                $.ajax({
+                    type: "POST",
+                    //http://fakeapi.apphb.com
+                    //http://apifake.apphb.com/
+                    url: "http://apifake.apphb.com/api/Values",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function () {
+                        document.getElementById('tags').value = "";
+                        document.getElementById('file1').value = "";
+                        $.post("http://apifake.apphb.com/api/Photo?hinhAnh=" + filename + "&tieuDe=" + tieude + "&nguoiDang=" + nguoidang,
+                            function () { alert('Tải ảnh thành công.'); }).error(function () { alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.'); })
+                    }
+                });
+            } else {
+                alert("your browser sucks!");
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,15 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+    <span style="color: white">Xin chào, </span>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "gn-link secondary", title = "Manage" })!
+    @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a style="color: #ff0084" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a>
+    }
+    </text>
+}
+else
+{
+    <a data-track="Account-sign_in" href="@Url.Action("login", "account")" class="gn-link secondary" data-rapid_p="15"><span>Đăng nhập</span></a>
+}

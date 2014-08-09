@@ -1,0 +1,52 @@
+﻿@model FakeShareImageClient.Models.LoginModel
+
+@{
+    ViewBag.Title = "Đăng nhập";
+}
+<section class="content-wrapper main-content clear-fix">
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="loginForm"">
+<h2>Tài khoản của Fake Image Sharing.</h2>
+    <br />
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.Label("Tên đăng nhập")
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.Label("Mật khẩu")
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.Label("Nhớ trạng thái đăng nhập", new { @class = "checkbox" })
+            </li>
+        </ol>
+        <input type="submit" value="Đăng nhập" />
+    </fieldset>
+    <p>
+        @Html.ActionLink("Đăng kí", "Register") nếu bạn chưa có tài khoản.
+    </p>
+}
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Đăng nhập thông qua</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+
+</section>

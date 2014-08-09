@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "ImageDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string img = ViewBag.id;
+    string hinhAnh = "";
+    @Html.Hidden("txtImg", @img);
+}
+<div id="main" class="clearfix" style="margin-top: 0px">
+    <!--Begin hien thi hinh anh-->
+
+    <div id="photo" style="height: 537px;">
+        <div id="photo-container">
+            <script src="~/Content/js/imageDetail.js"></script>
+        </div>
+    </div>
+
+    <!--Begin chi tiet hinh anh-->
+    <div id="photo-details" class="clearfix">
+        <div id="primary-column-wrapper">
+            <div id="primary-column" class="wide-photo-details">
+                <div id="meta">
+                    <div id="description_div" class="photo-desc">
+                        <p style="font-weight: bold">Hãy để lại bình luận của bạn</p>
+                    </div>
+                </div>
+
+                <div id="invites-and-comments">
+                    <div id="comments">
+                        <!--Khung comment-->
+                        @*http://localhost:1796/*@
+                        @{
+                            string cmt = "//www.facebook.com/plugins/comments.php?href=http://fake.apphb.com/home/imagedetail/" + @img + "&action=comment&appId=628030583900514";
+                            <iframe src=@cmt scrolling="yes" frameborder="0" style="border: none; width: 100%; overflow: hidden; height: 400px;" allowtransparency="true"></iframe>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar" class="wide-sidebar">
+            <!--Thong tin user-->
+            <div id="photo-story">
+                <div id="photo-story-attribution" class="clearfix">
+                    <p class="flickr-user" nsid="43301211@N03">
+                        <span class="name">
+                            <a href="#" data-track="photoAttributionBuddyIconClick" data-rapid_p="1">
+                                <img src="@Url.Content("/Content/images/fake.jpg")" alt="" width="48" height="48" align="absmiddle" data-menu-id="photo-owner-icon" class="buddyicon defer personmenu-trigger" id="yui_3_11_0_3_1392805346508_102" style="opacity: 1; transition: opacity 0.25s ease-in-out; -webkit-transition: opacity 0.25s ease-in-out;">
+                            </a>
+                            <span class="photo-name-line-1">
+                                <script src="~/Content/js/layTenNguoiDang.js"></script>
+                            </span>
+                            <span class="member-since">Thành viên của Fake</span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <!--Hinh anh lien quan-->
+            <div id="sidebar-contexts">
+                <ul id="secondary-contexts">
+                    <li id="context-explore-" data-context-id="explore-2014-02-18" data-context-type="explore" class="sidebar-context sidebar-context-open sidebar-context-first sidebar-context-first-only">
+                        <div id="contextDiv_explore" class="ugly-temporary-hack" style="display: block;"></div>
+                        <div class="context-header" id="yui_3_11_0_3_1392805346508_748">
+                            <a href="/explore/interesting/2014/02/18/with/12609225175/" class="context-link context-explore chunk ywa-track" data-ywa-name="Context Title" id="context-link-explore-" onclick="return F.actionQueue.queue_click(this.id);" style="overflow: hidden; white-space: nowrap;">
+                                <span class="context-wrapper">
+                                    <span class="context-title" title="Explore 2014-02-18">Hình ảnh khác</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div id="context-photos-explore" class="context">
+                            <ul id="context-photos-list-explore-" class="context-photos-list">
+                                <script src="~/Content/js/hinhcungnguoidang.js"></script>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="Dialog-Box" style="display: none; position: fixed; width: 320px; height: 150px; top: 50%; left: 50%; margin-left: -160px; margin-top: -75px;">
+        @using (Html.BeginForm("postFacebook", "Home", FormMethod.Post))
+        {
+            <table style="border: solid; background: aliceblue;">
+                <tr>
+                    <td colspan="2">Chia sẻ ảnh lên tường Facebook của bạn</td>
+                </tr>
+                <tr>
+                    <td id="tdHinhAnh"></td>
+                    <td>
+                        <textarea id="txtNoiDung" name="txtNoiDung" placeholder="Nhập nội dung chia sẻ." style="width: 312px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" id="btnShare" value="Chia sẻ" style="width: 69px; background-color: #5b74a8; color: white; font-weight: bold; border-color: #29447e #29447e #1a356e;" />
+                        <input type="button" id="btnClose" value="Hủy" style="width: 69px; background-color: #5b74a8; color: white; font-weight: bold; border-color: #29447e #29447e #1a356e;" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+
+@{
+    HttpCookie c = Request.Cookies["token"];
+    if (c != null)
+    {
+    @Html.Hidden("ck", HttpContext.Current.Request.Cookies["token"].Value)
+    }
+}
+
+<script>
+
+    $(document).delegate(".imgSub", "click", function () {
+        var ck = document.getElementById("ck");
+        if (ck == null) {
+            alert("Bạn cần phải đăng nhập bằng tài khoản Facebook để có thể share.");
+        } else {
+            $("#Dialog-Box").css("display", "block");
+        }
+    });
+    $(".imgSub").click(function () {
+        $("#Dialog-Box").css("display", "block");
+    });
+    $("#btnClose").click(function () {
+        $("#Dialog-Box").css("display", "none");
+    });
+
+</script>

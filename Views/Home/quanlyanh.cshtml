@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Quản lý ảnh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Hidden("txtUserName", User.Identity.Name)
+<div id="main" class="clearfix" style="z-index: 1; margin-top: 0px">
+    <div class="subnav-refresh subnav-view subnav-state-ready" id="subnav-refresh" style="left: -188px; width: 1351px;">
+        <div class="cover-photo-holder">
+            <div id="cover-photo" class="cover-photo wviewvert" style="background-image: url(http://l.yimg.com/g/images/coverphoto12_h.jpg.v2); top: -35px;"></div>
+        </div>
+        <!--Menu-->
+        <div class="subnav-middle" id="yui_3_11_0_3_1393404454770_735">
+            <div class="sn-avatar sn-avatar-size-300" id="yui_3_11_0_3_1393404454770_755">
+                <img class="sn-avatar-mask" height="110" width="110" src="/Content/images/fake.jpg">
+            </div>
+            <div class="person" id="yui_3_11_0_3_1393404454770_738">
+                <h1 id="yui_3_11_0_3_1393404454770_740">
+                    <span class="character-name-holder" id="yui_3_11_0_3_1393404454770_757">
+                        @User.Identity.Name
+                    </span>
+                </h1>
+            </div>
+            <div class="subnav-holder" id="yui_3_11_0_3_1393404454770_734">
+                <ul class="nav-links clearfix" id="yui_3_11_0_3_1393404454770_733">
+                    <li class="sn-navitem sn-photostream">
+                        <a data-track="YouSubnav-photostream" href="/home/imageuser" data-rapid_p="3">Kho ảnh</a>
+
+                    </li>
+                    <li class="sn-navitem sn-navitem-sets">
+                        <a data-track="YouSubnav-sets" href="/home/trinhdienanh" data-rapid_p="4">Trình diễn ảnh</a></li>
+                    <li class="sn-navitem sn-navitem-faves sn-active " id="yui_3_11_0_3_1393404454770_751">
+                        <a data-track="YouSubnav-favorites" href="/home/quanlyanh" data-rapid_p="5" id="yui_3_11_0_3_1393404454770_750">Sửa</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--END MENU-->
+
+    <!--BEGIN QUAN LY-->
+    <div class="photoStream">
+        <div id="photo-display-container">
+            
+            <script src="~/Content/js/quanlyanh.js"></script>
+        </div>
+    </div>
+
+</div>

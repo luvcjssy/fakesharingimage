@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:type" content="imagesharingbyfake:photo">
+
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" />
+    <script src="~/Scripts/knockout-2.2.0.debug.js"></script>
+    <script src="@Url.Content("~/Content/js/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/jquery-ui-1.8.20.js")"></script>
+    <script src="@Url.Content("~/Content/js/jquery-ui-1.8.20.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/hover.js")"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="zeus vn-vn new-footer new-header super-liquid extras signed-out breakout new-footer-tight-ass has-ads js ua-windows-webkit ua-windows-webkit-537 liquid">
+    <div id="eyebrow">
+        <div id="eyebrow-wrap"></div>
+    </div>
+
+    <!--Begin menu-->
+    <div id="global-nav" class="gn-signed-out">
+        <div id="gn-wrap" class="gn-wrap">
+            <div class="logo" style="width: 70px;">
+                <a href="/" data-track="Logo-main" title="Logo Flickr. Nếu bạn nhấp vào đây, bạn sẽ vào trang chính" data-rapid_p="1">
+                    @*<span class="refresh-logo-2013">Logo Flickr. Nếu bạn nhấp vào đây, bạn sẽ vào trang chính </span>*@
+                    <div style="padding-top:15px">
+                        <img src="~/Content/images/logo-1.png" width="70px" height="19px" />
+                    </div>
+                </a>
+            </div>
+            <div class="nav small-logo">
+                <ul class="top-nav">
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li class="toplink">
+                            <a data-track="Signup-main" href="/account/register" class="gn-link gn-signup sign-up-pixel-trigger" data-rapid_p="2"><span>Đăng ký</span></a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="toplink" id="menuuser">
+                            <a data-track="Signup-main" href="/home/imageuser" class="gn-link gn-signup sign-up-pixel-trigger" data-rapid_p="2"><span>Ảnh của bạn</span></a>
+                            <div class="panel" id="you-panel">
+                                <div class="arrow"></div>
+                                <div class="bd">
+                                    <ul>
+                                        <li class="gn-subnav-item">
+                                            <a data-track="You-photostream" href="/home/imageuser" data-rapid_p="3">Kho ảnh</a>
+                                        </li>
+                                        <li class="gn-subnav-item">
+                                            <a data-track="Manage-photostream" href="/home/trinhdienanh" data-rapid_p="3">Trình diễn ảnh</a>
+                                        </li>
+                                        <li class="gn-subnav-item">
+                                            <a data-track="Slideshow-photostream" href="/home/quanlyanh" data-rapid_p="3">Sửa</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="gn-menu-parent toplink" data-context="explore">
+                        <a data-track="Explore-main" class="gn-link explore" href="/home/index" data-rapid_p="3"><span>Trang chủ</span></a>
+                    </li>
+                    <li class="toplink  gn-upload">
+                        <a data-track="Upload-main" class="gn-link" href="/home/uploadimage" data-rapid_p="12">
+                            <span>Tải lên</span>
+                        </a>
+                    </li>
+                    <li class="toplink  gn-upload">
+                        <a data-track="Upload-main" class="gn-link" href="/home/flickr" data-rapid_p="12">
+                            <span>Ảnh mới từ Flickr</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tools">
+                <ul class="top-nav">
+                    <li class="toplink gn-signin">
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--End menu-->
+
+    @RenderBody()
+
+    <!--Footer-->
+    <div id="foot" class="new-foot" role="contentinfo">
+        <div id="foot-wrap" class="clearfix">
+            <div id="foot-nav" class="clearfix">
+                <div class="foot-nav-col-new">
+                    <dl>
+                        <dt>Giới thiệu về Fake</dt>
+                    </dl>
+                </div>
+                <div class="foot-nav-col-new">
+                    <dl>
+                        <dt>Cộng đồng</dt>
+                    </dl>
+                </div>
+                <div class="foot-nav-col-new">
+                    <dl>
+                        <dt>Trợ giúp</dt>
+                    </dl>
+                </div>
+                <div class="foot-nav-col-new">
+                    <dl>
+                        <dt>Ứng dụng và API</dt>
+                    </dl>
+                </div>
+                <div class="foot-nav-col-new last">
+                    <dl>
+                        <dd><a class="ft-twitter" title="Twitter" href="http://twitter.com/flickr"><span class="icon"></span><span class="link-text">Theo dõi chúng tôi</span></a></dd>
+                        <dd><a class="ft-facebook" title="Facebook" href="http://facebook.com/flickr"><span class="icon"></span><span class="link-text">Thích chúng tôi</span></a></dd>
+
+                    </dl>
+                </div>
+
+            </div>
+            <div id="foot-legalsleeze">
+                <div>
+                    <a href="/help/terms/">Điều khoản</a> <span style="color: #eee;">|</span>
+
+                    <a href="/help/privacy-policy/">Riêng tư</a> <span style="color: #eee;">|</span>
+                    <a href="http://sg.safely.yahoo.com">Yahoo An Toàn</a>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

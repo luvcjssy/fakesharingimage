@@ -1,0 +1,35 @@
+﻿@model FakeShareImageClient.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Đăng kí";
+}
+<section class="content-wrapper main-content clear-fix">
+
+    <hgroup class="title">
+        <h1>@ViewBag.Title.</h1>
+        <h2>Liên kết tài khoản @ViewBag.ProviderDisplayName của bạn.</h2>
+    </hgroup>
+
+    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Association Form</legend>
+            <p>
+                Bạn đã xác thực thành công với tài khoản<strong>@ViewBag.ProviderDisplayName</strong>.
+            Xin vui lòng tên người dùng cho trang web này bên dưới và nhấn nút Xác nhận để hoàn tất đăng nhập.
+            </p>
+            <ol>
+                <li class="name">
+                    @Html.Label("Tên đang nhập")
+                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </li>
+            </ol>
+            @Html.HiddenFor(m => m.ExternalLoginData)
+            <input type="submit" value="Đăng kí" />
+        </fieldset>
+    }
+
+</section>

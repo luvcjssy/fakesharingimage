@@ -1,0 +1,30 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <link href="@Url.Content("~/Content/error.css")" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="main">
+        <!-- header -->
+        @RenderBody()
+        <!-- content -->
+        <div id="content">
+            <ul class="nav">
+                <li class="home">@Html.ActionLink("Home Page","index","home")</li>
+            </ul>
+            <p>
+                Hey, you're early! You don't belong here - at least not today. Besides, what you're looking for is not here anyways.<br>
+                So why don't you go to our @Html.ActionLink("home page","index","home").
+            </p>
+        </div>
+        <!-- footer -->
+        <div id="footer">
+            Designed by TemplateMonster - all <a href="http://www.templatemonster.com/" target="_blank" rel="nofollow">website templates</a> found and safe!
+        </div>
+    </div>
+
+</body>
+</html>

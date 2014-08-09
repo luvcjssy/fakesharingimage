@@ -1,0 +1,37 @@
+﻿@model FakeShareImageClient.Models.RegisterModel
+@{
+    ViewBag.Title = "Đăng kí";
+}
+<section class="content-wrapper main-content clear-fix">
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Tạo tài khoản mới.</h2>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.Label("Tên đăng nhập")
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.Label("Mật khẩu")
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.Label("Nhập lại mật khẩu")
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        
+        <input type="submit" value="Đăng kí" />
+    </fieldset>
+}
+
+</section>
