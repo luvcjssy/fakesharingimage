@@ -2,7 +2,7 @@
 {
     <text>
     <span style="color: white">Xin chào, </span>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "gn-link secondary", title = "Manage" })
-    |
+    | 
     @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
